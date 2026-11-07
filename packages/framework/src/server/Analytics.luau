@@ -10,7 +10,14 @@ function Analytics.start(name: string)
 end
 
 -- transactionType: nome de Enum.AnalyticsEconomyTransactionType ("IAP", "Gameplay", "Shop", "ContextualPurchase", ...)
-function Analytics.economy(player: Player, isSource: boolean, amount: number, balance: number, transactionType: string, sku: string?)
+function Analytics.economy(
+	player: Player,
+	isSource: boolean,
+	amount: number,
+	balance: number,
+	transactionType: string,
+	sku: string?
+)
 	if amount <= 0 then
 		return
 	end

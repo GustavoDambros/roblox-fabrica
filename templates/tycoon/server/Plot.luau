@@ -226,7 +226,8 @@ function Plot:render(data, nextUpgrade, rebirthCost: number, income: number)
 		self.pad.CFrame = self:slotCFrame(slot) * CFrame.new(0, 0.2, 0)
 		self.pad.Transparency = 0.2
 		self.pad.CanTouch = true
-		self.padLabel.Text = string.format("%s\n%s %s", nextUpgrade.name, Format.abbreviate(nextUpgrade.cost), currencyName)
+		self.padLabel.Text =
+			string.format("%s\n%s %s", nextUpgrade.name, Format.abbreviate(nextUpgrade.cost), currencyName)
 	else
 		self.pad.Transparency = 1
 		self.pad.CanTouch = false

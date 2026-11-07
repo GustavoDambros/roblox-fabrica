@@ -104,7 +104,11 @@ function Tycoon.start(config, Framework)
 			return
 		end
 		if not Currency.spend(player, upgrade.cost, "Shop", upgrade.key) then
-			Notify.send(player, string.format("Faltam %d %s", math.ceil(upgrade.cost - Currency.get(player)), config.currencyName), "error")
+			Notify.send(
+				player,
+				string.format("Faltam %d %s", math.ceil(upgrade.cost - Currency.get(player)), config.currencyName),
+				"error"
+			)
 			return
 		end
 		data.upgrades[upgrade.key] = true

@@ -75,7 +75,9 @@ local function loadAsync(player: Player): ({ [string]: any }?, boolean)
 			return data, false
 		end
 		if not ok then
-			warn(string.format("[Data] Falha ao carregar %s (tentativa %d): %s", player.Name, attempt, tostring(result)))
+			warn(
+				string.format("[Data] Falha ao carregar %s (tentativa %d): %s", player.Name, attempt, tostring(result))
+			)
 			if RunService:IsStudio() and string.find(tostring(result), "API", 1, true) then
 				warn("[Data] Studio sem acesso a API: usando dados só em memória.")
 				return deepCopy(defaults), true
