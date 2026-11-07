@@ -1,0 +1,39 @@
+{
+	"name": "pizzaria-tycoon",
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"FrameworkShared": {
+				"$path": "../../packages/framework/src/shared"
+			},
+			"FrameworkClient": {
+				"$path": "../../packages/framework/src/client"
+			},
+			"GameConfig": {
+				"$path": "config.luau"
+			}
+		},
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+			"Framework": {
+				"$path": "../../packages/framework/src/server"
+			},
+			"Tycoon": {
+				"$path": "../../templates/tycoon/server"
+			},
+			"Main": {
+				"$path": "src/server"
+			}
+		},
+		"StarterPlayer": {
+			"$className": "StarterPlayer",
+			"StarterPlayerScripts": {
+				"$className": "StarterPlayerScripts",
+				"Main": {
+					"$path": "src/client"
+				}
+			}
+		}
+	}
+}
