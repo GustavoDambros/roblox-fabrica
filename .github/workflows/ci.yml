@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar ferramentas (Rokit)
+        uses: CompeyDev/setup-rokit@v0.1.2
+
+      - name: Formatação (StyLua)
+        run: stylua --check packages templates games
+
+      - name: Lint (Selene)
+        run: selene packages templates games
+
+      - name: Gerar arquivos dos jogos (Rojo)
+        run: |
+          mkdir -p build
+          for project in games/*/default.project.json; do
+            game=$(basename "$(dirname "$project")")
+            rojo build "$project" -o "build/$game.rbxl"
+          done
+
+      - name: Disponibilizar os .rbxl para baixar
+        uses: actions/upload-artifact@v4
+        with:
+          name: jogos
+          path: build/*.rbxl
