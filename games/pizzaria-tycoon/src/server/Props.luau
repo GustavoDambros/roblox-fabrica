@@ -12,7 +12,6 @@ local Props = {}
 
 local METAL = Color3.fromRGB(170, 175, 180)
 local DARK = Color3.fromRGB(40, 40, 45)
-local WOOD = Color3.fromRGB(150, 100, 60)
 local CRUST = Color3.fromRGB(230, 165, 70)
 local SAUCE = Color3.fromRGB(200, 50, 35)
 local CHEESE = Color3.fromRGB(250, 215, 110)
