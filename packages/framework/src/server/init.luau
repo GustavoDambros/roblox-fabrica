@@ -9,6 +9,7 @@ local Monetization = require(script.Monetization)
 local AntiExploit = require(script.AntiExploit)
 local Analytics = require(script.Analytics)
 local Notify = require(script.Notify)
+local Builder = require(script.Builder)
 
 local Framework = {
 	Data = Data,
@@ -18,6 +19,7 @@ local Framework = {
 	AntiExploit = AntiExploit,
 	Analytics = Analytics,
 	Notify = Notify,
+	Builder = Builder,
 }
 
 local started = false

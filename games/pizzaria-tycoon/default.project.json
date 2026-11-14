@@ -12,6 +12,9 @@
 			},
 			"GameConfig": {
 				"$path": "config.luau"
+			},
+			"TycoonClient": {
+				"$path": "../../templates/tycoon/client"
 			}
 		},
 		"ServerScriptService": {
