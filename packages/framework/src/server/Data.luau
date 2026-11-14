@@ -18,7 +18,8 @@ local store: DataStore? = nil
 local defaults: { [string]: any } = {}
 local profiles: { [Player]: { [string]: any } } = {}
 local memoryOnly: { [Player]: boolean } = {}
-local loadedEvent = Instance.new("BindableEvent")
+-- Lista simples de callbacks (um BindableEvent copiaria a tabela de dados, e as alterações se perderiam).
+local loadedCallbacks: { (Player, { [string]: any }) -> () } = {}
 local started = false
 
 local function deepCopy(value: any): any
@@ -124,7 +125,9 @@ local function onPlayerAdded(player: Player)
 	end
 	profiles[player] = data
 	memoryOnly[player] = inMemory
-	loadedEvent:Fire(player, data)
+	for _, callback in loadedCallbacks do
+		task.spawn(callback, player, data)
+	end
 end
 
 local function onPlayerRemoving(player: Player)
@@ -200,7 +203,7 @@ function Data.onLoaded(callback: (Player, { [string]: any }) -> ())
 	for player, data in profiles do
 		task.spawn(callback, player, data)
 	end
-	loadedEvent.Event:Connect(callback)
+	table.insert(loadedCallbacks, callback)
 end
 
 -- Salva agora (usado depois de compras com Robux).

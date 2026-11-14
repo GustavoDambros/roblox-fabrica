@@ -141,7 +141,14 @@ function Tycoon.start(config, Framework)
 		if not plot then
 			return
 		end
-		character:WaitForChild("HumanoidRootPart", 10)
+		if not character:WaitForChild("HumanoidRootPart", 10) then
+			return
+		end
+		-- Espera o Roblox terminar de posicionar o personagem no SpawnLocation, senão ele sobrescreve o nosso.
+		if not character.Parent then
+			character.AncestryChanged:Wait()
+		end
+		task.wait(0.1)
 		AntiExploit.allowTeleport(player, 3)
 		character:PivotTo(plot:spawnCFrame())
 	end
@@ -160,6 +167,7 @@ function Tycoon.start(config, Framework)
 			return
 		end
 		plotOf[player] = plot
+		print(string.format("[Tycoon] %s recebeu o %s", player.Name, plot.model.Name))
 		pending[player] = 0
 		plot:claim(player, {
 			onCollect = function()

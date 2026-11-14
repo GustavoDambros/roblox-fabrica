@@ -39,6 +39,7 @@ local function billboard(adornee: BasePart, height: number, width: number): Text
 	label.Font = Enum.Font.GothamBold
 	label.TextColor3 = Color3.new(1, 1, 1)
 	label.TextStrokeTransparency = 0.3
+	label.Text = ""
 	label.Parent = gui
 	return label
 end
@@ -75,7 +76,10 @@ function Plot.new(index: number, settings, world: Folder)
 	self.callbacks = nil
 	self.lastTouch = 0
 
-	local offset = (index - 1 - (settings.plotCount - 1) / 2) * (settings.plotSize + 24)
+	-- Terrenos lado a lado, centralizados no ponto de nascimento; o 1º fica no meio e os próximos alternam
+	-- para a esquerda e a direita, assim quem entra primeiro fica perto do spawn.
+	local column = if index % 2 == 0 then index // 2 else -((index - 1) // 2)
+	local offset = column * (settings.plotSize + 24)
 	self.origin = CFrame.new(offset, 0, 0)
 
 	local model = Instance.new("Model")
@@ -103,7 +107,6 @@ function Plot.new(index: number, settings, world: Folder)
 		Parent = model,
 	})
 	self.collectorLabel = billboard(self.collector, 4, 220)
-	self.collectorLabel.Text = ""
 
 	self.rebirthPad = part({
 		Name = "Rebirth",
